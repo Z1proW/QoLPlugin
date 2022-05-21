@@ -1,0 +1,5 @@
+name: QoLPlugin
+version: '${project.version}'
+main: me.ziprow.qolplugin.QoLPlugin
+api-version: 1.1
+author: Z1proW
