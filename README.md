@@ -7,28 +7,18 @@ My Quality of Life Spigot Minecraft Plugin
 * Rotate redstone comparators and repeaters with sneak + right click
 * Break trees faster (Timber)
 
-
 * Custom crafting recipes
   * 4 stairs -> 6 blocks
   * 2 slabs -> 1 block
   * craft bow + dropper in the middle -> dispenser
   * 4 flint -> 1 gravel
   * 1 wool -> 4 string
-  * horse armor craft  
-    O  
-    OOO  
-    OXO  
-    {O = Material (eg. diamond), X = Saddle}
+  * horse armor  
+    <img src="readme_imgs/horse_armor.png" width="200" title="horse_armor">
   * saddle  
-      O  
-    OOO  
-    O O  
-    {O = leather}
+    <img src="readme_imgs/saddle.png" width="200" title="saddle">
   * nametag  
-      S  
-     P  
-    P  
-    {S = String, P = Paper}
+    <img src="readme_imgs/nametag.png" width="200" title="nametag">
 
 
 * Custom furnace recipes
