@@ -36,10 +36,6 @@ public class CustomRecipes
 		// fleshToLeather
 		Bukkit.addRecipe(new FurnaceRecipe(new ItemStack(Material.LEATHER), Material.ROTTEN_FLESH));
 
-		// CoalToDye
-		for(int i = 0; i < 2; i++)
-			Bukkit.addRecipe(new ShapelessRecipe(new ItemStack(Material.INK_SACK)).addIngredient(Material.COAL, i));
-
 		// straightToShapeLess
 		Bukkit.addRecipe(new ShapelessRecipe(new ItemStack(Material.PAPER, 3)).addIngredient(3, Material.SUGAR_CANE));
 		Bukkit.addRecipe(new ShapelessRecipe(new ItemStack(Material.BREAD)).addIngredient(3, Material.WHEAT));
