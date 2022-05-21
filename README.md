@@ -4,7 +4,7 @@ My Quality of Life Spigot Minecraft Plugin
 ---
 
 * Close Inventory by clicking outside
-* Rotate redstone comparators and repeaters by shift clicking
+* Rotate redstone comparators and repeaters with sneak + right click
 * Break trees faster (Timber)
 
 
@@ -36,3 +36,11 @@ My Quality of Life Spigot Minecraft Plugin
 
 
 * bread and book crafts are now shapeless (you can craft them without table)
+
+---
+
+### TODO
+
+* edit signs with sneak + right click
+* edit armorstand pose with sneak + right click
+* custom config file
