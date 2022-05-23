@@ -1,0 +1,31 @@
+# Enable or disable features
+# true = enabled
+# false = disabled
+
+# Close Inventory by clicking outside
+close-inv: true
+
+# Rotate redstone comparators and repeaters with sneak + right click
+rotate-redstone: true
+
+# Break trees faster (Timber)
+timber: false
+
+# Change shaped crafting recipe to shapeless
+shapeless-bread: true
+shapeless-books: true
+
+# Furnace recipes
+flesh-to-leather: false
+
+# Custom crafting recipes
+stairs-to-blocks: true
+slabs-to-blocks: true
+dropper-to-dispenser: true
+flint-to-gravel: false
+wool-to-string: false
+
+# Uncraftable items made craftable
+horse-armor: true
+saddle: true
+nametag: true
