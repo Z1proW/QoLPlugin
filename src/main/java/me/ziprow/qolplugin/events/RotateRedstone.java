@@ -1,4 +1,4 @@
-package me.ziprow.qolplugin.Events;
+package me.ziprow.qolplugin.events;
 
 import org.bukkit.block.Block;
 import org.bukkit.event.EventHandler;

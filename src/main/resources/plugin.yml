@@ -3,3 +3,16 @@ version: '${project.version}'
 main: me.ziprow.qolplugin.QoLPlugin
 api-version: 1.1
 author: Z1proW
+
+commands:
+  qol:
+    description: Main command for Z1proW's Quality of Life Plugin.
+
+permissions:
+  qol.user:
+    description: Allows player to use the plugin's user features
+    default: true
+
+  qol.admin:
+    description: Allows player to use the plugin's admin features
+    default: op

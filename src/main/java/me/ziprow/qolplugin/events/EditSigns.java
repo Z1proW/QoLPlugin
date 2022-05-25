@@ -1,4 +1,4 @@
-package me.ziprow.qolplugin.Events;
+package me.ziprow.qolplugin.events;
 
 import org.bukkit.block.BlockState;
 import org.bukkit.block.Sign;
