@@ -16,7 +16,7 @@ import java.util.List;
 public class Timber implements Listener
 {
 	
-	private JavaPlugin main;
+	private final JavaPlugin main;
 	
 	private final List<Material> logs = Arrays.asList(Material.LOG, Material.LOG_2);
 	private final List<Material> axes = Arrays.asList(Material.WOOD_AXE, Material.STONE_AXE, Material.IRON_AXE, Material.GOLD_AXE, Material.DIAMOND_AXE);

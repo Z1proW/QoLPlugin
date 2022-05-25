@@ -5,7 +5,6 @@ import me.ziprow.qolplugin.commands.TabComplete;
 import me.ziprow.qolplugin.events.CloseInv;
 import me.ziprow.qolplugin.events.RotateRedstone;
 import me.ziprow.qolplugin.events.Timber;
-import org.apache.commons.lang3.StringUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -96,6 +95,7 @@ public final class QoLPlugin extends JavaPlugin
 		events.forEach(this::regEvent);
 	}
 
+	@SuppressWarnings("deprecation")
 	public void loadRecipes()
 	{
 		recipes = new ArrayList<>();
