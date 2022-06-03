@@ -2,10 +2,7 @@ package me.ziprow.qolplugin;
 
 import me.ziprow.qolplugin.commands.MainCommand;
 import me.ziprow.qolplugin.commands.TabComplete;
-import me.ziprow.qolplugin.events.CloseInv;
-import me.ziprow.qolplugin.events.RotateRedstone;
-import me.ziprow.qolplugin.events.Timber;
-import me.ziprow.qolplugin.events.VineGrow;
+import me.ziprow.qolplugin.events.*;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -91,7 +88,7 @@ public final class QoLPlugin extends JavaPlugin
 			events.add(new RotateRedstone());
 
 		if(config.getBoolean("timber"))
-			events.add(new Timber(this));
+			events.add(new Timber());
 
 		if(config.getBoolean("grow-vines"))
 			events.add(new VineGrow());

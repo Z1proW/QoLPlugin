@@ -1,5 +1,6 @@
 package me.ziprow.qolplugin.events;
 
+import me.ziprow.qolplugin.QoLPlugin;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -16,12 +17,8 @@ import java.util.List;
 public class Timber implements Listener
 {
 	
-	private final JavaPlugin main;
-	
 	private final List<Material> logs = Arrays.asList(Material.LOG, Material.LOG_2);
 	private final List<Material> axes = Arrays.asList(Material.WOOD_AXE, Material.STONE_AXE, Material.IRON_AXE, Material.GOLD_AXE, Material.DIAMOND_AXE);
-	
-	public Timber(JavaPlugin main) {this.main = main;}
 
 	@EventHandler
 	public void onBlockBreak(BlockBreakEvent e)
@@ -43,7 +40,7 @@ public class Timber implements Listener
 		{
 			b.breakNaturally();
 			
-			Bukkit.getScheduler().runTaskLater(main, () ->
+			Bukkit.getScheduler().runTaskLater(QoLPlugin.main, () ->
 			{
 				for(int x = -1; x <= 1; x++)
 					for(int y = -1; y <= 1; y++)

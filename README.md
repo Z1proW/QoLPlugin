@@ -7,6 +7,7 @@ My Quality of Life Spigot Minecraft Plugin
 * Rotate redstone comparators and repeaters with sneak + right click
 * Break trees faster (Timber)  
   (all changes can be disabled in the config.yml file)
+* Grow vines with bone meal or vines
 ---
 * bread and book crafts are now shapeless (no need for a crafting table anymore)
 * Custom furnace recipes
