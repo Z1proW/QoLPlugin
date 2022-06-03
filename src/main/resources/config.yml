@@ -11,6 +11,9 @@ rotate-redstone: true
 # Break trees faster (Timber)
 timber: true
 
+# Grow vines
+grow-vines: true
+
 # Change shaped crafting recipe to shapeless
 shapeless-bread: true
 shapeless-books: true

@@ -82,7 +82,7 @@ public class MainCommand implements CommandExecutor
 			if(QoLPlugin.config.get(key) instanceof Boolean)
 			{
 				TextComponent setting = new TextComponent((QoLPlugin.config.getBoolean(key) ? ChatColor.GREEN + "[+] " : ChatColor.RED + "[-] ") + ChatColor.GRAY + key);
-				setting.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder("Toggle").create()));
+				setting.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder("Toggle " + key).create()));
 				setting.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/qol toggle " + key));
 				if(sender instanceof Player)
 					((Player)sender).spigot().sendMessage(setting);
