@@ -93,6 +93,9 @@ public final class QoLPlugin extends JavaPlugin
 		if(config.getBoolean("grow-vines"))
 			events.add(new VineGrow());
 
+		if(config.getBoolean("edit-signs"))
+			events.add(new EditSigns());
+
 		events.forEach(this::regEvent);
 	}
 

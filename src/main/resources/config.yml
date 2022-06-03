@@ -14,6 +14,9 @@ timber: true
 # Grow vines
 grow-vines: true
 
+# Edit Signs with Right Click
+edit-signs: true
+
 # Change shaped crafting recipe to shapeless
 shapeless-bread: true
 shapeless-books: true

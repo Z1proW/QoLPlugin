@@ -8,6 +8,7 @@ My Quality of Life Spigot Minecraft Plugin
 * Break trees faster (Timber)  
   (all changes can be disabled in the config.yml file)
 * Grow vines with bone meal or vines
+* edit signs with right click
 ---
 * bread and book crafts are now shapeless (no need for a crafting table anymore)
 * Custom furnace recipes
@@ -31,5 +32,4 @@ My Quality of Life Spigot Minecraft Plugin
 
 ### TODO
 
-* edit signs with sneak + right click
 * edit armorstand pose with sneak + right click
