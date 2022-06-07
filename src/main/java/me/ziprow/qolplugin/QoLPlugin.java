@@ -22,16 +22,14 @@ public final class QoLPlugin extends JavaPlugin
 	public static final String PREFIX = ChatColor.DARK_PURPLE + "[QoLPlugin] " + ChatColor.RESET;
 	public static final String CONSOLE_PREFIX = "[QoLPlugin] ";
 
-	public static FileConfiguration config;
-
-	public static QoLPlugin main;
-	private static List<Recipe> recipes;
-	private static List<Listener> events;
+	private static QoLPlugin MAIN;
+	private static List<Recipe> RECIPES;
+	private static List<Listener> LISTENERS;
 
 	@Override
 	public void onEnable()
 	{
-		main = this;
+		MAIN = this;
 
 		saveDefaultConfig();
 
@@ -43,8 +41,6 @@ public final class QoLPlugin extends JavaPlugin
 
 	private void loadConfig()
 	{
-		config = getConfig();
-
 		loadEvents();
 		loadRecipes();
 	}
@@ -61,110 +57,125 @@ public final class QoLPlugin extends JavaPlugin
 
 	public static void reload()
 	{
-		Iterator<Recipe> iter = main.getServer().recipeIterator();
+		Iterator<Recipe> iter = MAIN.getServer().recipeIterator();
 		while(iter.hasNext())
 		{
 			Recipe r = iter.next();
-			if(recipes.contains(r))
+			if(RECIPES.contains(r))
 				iter.remove();
 		}
 
-		events.forEach(main::unregEvent);
+		LISTENERS.forEach(MAIN::unregEvent);
 
-		main.reloadConfig();
-		main.loadConfig();
+		MAIN.reloadConfig();
+		MAIN.loadConfig();
 
 		Bukkit.getLogger().info(CONSOLE_PREFIX + "Settings Reloaded");
 	}
 
 	private void loadEvents()
 	{
-		events = new ArrayList<>();
+		LISTENERS = new ArrayList<>();
 
-		if(config.getBoolean("close-inv"))
-			events.add(new CloseInv());
+		if(getSetting("close-inv"))
+			LISTENERS.add(new CloseInv());
 
-		if(config.getBoolean("rotate-redstone"))
-			events.add(new RotateRedstone());
+		if(getSetting("rotate-redstone"))
+			LISTENERS.add(new RotateRedstone());
 
-		if(config.getBoolean("timber"))
-			events.add(new Timber());
+		if(getSetting("timber"))
+			LISTENERS.add(new Timber());
 
-		if(config.getBoolean("grow-vines"))
-			events.add(new VineGrow());
+		if(getSetting("grow-vines"))
+			LISTENERS.add(new VineGrow());
 
-		if(config.getBoolean("edit-signs"))
-			events.add(new EditSigns());
+		if(getSetting("edit-signs"))
+			LISTENERS.add(new EditSigns());
 
-		events.forEach(this::regEvent);
+		LISTENERS.forEach(this::regEvent);
 	}
 
 	@SuppressWarnings("deprecation")
 	public void loadRecipes()
 	{
-		recipes = new ArrayList<>();
+		RECIPES = new ArrayList<>();
 
 		// straightToShapeless
-		if(config.getBoolean("shapeless-bread"))
-			recipes.add(new ShapelessRecipe(new ItemStack(Material.BREAD)).addIngredient(3, Material.WHEAT));
-		if(config.getBoolean("shapeless-books"))
-			recipes.add(new ShapelessRecipe(new ItemStack(Material.PAPER, 3)).addIngredient(3, Material.SUGAR_CANE));
+		if(getSetting("shapeless-bread"))
+			RECIPES.add(new ShapelessRecipe(new ItemStack(Material.BREAD)).addIngredient(3, Material.WHEAT));
+		if(getSetting("shapeless-books"))
+			RECIPES.add(new ShapelessRecipe(new ItemStack(Material.PAPER, 3)).addIngredient(3, Material.SUGAR_CANE));
 
 		// fleshToLeather
-		if(config.getBoolean("flesh-to-leather"))
-			recipes.add(new FurnaceRecipe(new ItemStack(Material.LEATHER), Material.ROTTEN_FLESH));
+		if(getSetting("flesh-to-leather"))
+			RECIPES.add(new FurnaceRecipe(new ItemStack(Material.LEATHER), Material.ROTTEN_FLESH));
 
 		// backToBlocks
 		final Material[] blocks = {Material.STONE, Material.SANDSTONE, Material.WOOD, Material.COBBLESTONE, Material.BRICK, Material.SMOOTH_BRICK, Material.NETHER_BRICK, Material.QUARTZ_BLOCK};
 
-		if(config.getBoolean("stairs-to-blocks"))
+		if(getSetting("stairs-to-blocks"))
 		{
 			final Material[] stairs = {Material.COBBLESTONE_STAIRS, Material.SANDSTONE_STAIRS, Material.WOOD_STAIRS, Material.COBBLESTONE_STAIRS, Material.BRICK_STAIRS, Material.SMOOTH_STAIRS, Material.NETHER_BRICK_STAIRS, Material.QUARTZ_STAIRS};
 			final Material[] stairs2 = {Material.WOOD_STAIRS, Material.SPRUCE_WOOD_STAIRS, Material.BIRCH_WOOD_STAIRS, Material.JUNGLE_WOOD_STAIRS, Material.ACACIA_STAIRS, Material.DARK_OAK_STAIRS};
 
 			for(int i = 0; i < 8; i++)
-				recipes.add(new ShapelessRecipe(new ItemStack(blocks[i], 6)).addIngredient(4, stairs[i]));
+				RECIPES.add(new ShapelessRecipe(new ItemStack(blocks[i], 6)).addIngredient(4, stairs[i]));
 			for(int i = 0; i < 6; i++)
-				recipes.add(new ShapelessRecipe(new ItemStack(Material.WOOD, 6, (short)i)).addIngredient(4, stairs2[i]));
+				RECIPES.add(new ShapelessRecipe(new ItemStack(Material.WOOD, 6, (short)i)).addIngredient(4, stairs2[i]));
 
-			recipes.add(new ShapelessRecipe(new ItemStack(Material.RED_SANDSTONE, 6)).addIngredient(4, Material.RED_SANDSTONE_STAIRS));
+			RECIPES.add(new ShapelessRecipe(new ItemStack(Material.RED_SANDSTONE, 6)).addIngredient(4, Material.RED_SANDSTONE_STAIRS));
 		}
-		if(config.getBoolean("slabs-to-blocks"))
+		if(getSetting("slabs-to-blocks"))
 		{
 			for(int i = 0; i < 8; i++)
-				recipes.add(new ShapelessRecipe(new ItemStack(blocks[i], 1)).addIngredient(2, Material.STEP, i));
+				RECIPES.add(new ShapelessRecipe(new ItemStack(blocks[i], 1)).addIngredient(2, Material.STEP, i));
 			for(int i = 0; i < 6; i++)
-				recipes.add(new ShapelessRecipe(new ItemStack(Material.WOOD, 1, (short)i)).addIngredient(2, Material.WOOD_STEP, i));
+				RECIPES.add(new ShapelessRecipe(new ItemStack(Material.WOOD, 1, (short)i)).addIngredient(2, Material.WOOD_STEP, i));
 
 			// doesn't work for sandstone slabs because it makes chiseled variant
 			// recipes.add(new ShapelessRecipe(new ItemStack(Material.RED_SANDSTONE, 6)).addIngredient(4, Material.STONE_SLAB2));
 		}
 
 		// QoL crafts
-		if(config.getBoolean("flint-to-gravel"))
-			recipes.add(new ShapelessRecipe(new ItemStack(Material.GRAVEL)).addIngredient(4, Material.FLINT));
-		if(config.getBoolean("wool-to-string"))
+		if(getSetting("flint-to-gravel"))
+			RECIPES.add(new ShapelessRecipe(new ItemStack(Material.GRAVEL)).addIngredient(4, Material.FLINT));
+		if(getSetting("wool-to-string"))
 			for(int i = 0; i < 16; i++)
-				recipes.add(new ShapelessRecipe(new ItemStack(Material.STRING, 4)).addIngredient(Material.WOOL, i));
-		if(config.getBoolean("dropper-to-dispenser"))
-			recipes.add(new ShapelessRecipe(new ItemStack(Material.DISPENSER, 1)).addIngredient(Material.DROPPER).addIngredient(Material.BOW));
-		if(config.getBoolean("dropper-to-dispenser-shaped"))
-			recipes.add(new ShapedRecipe(new ItemStack(Material.DISPENSER)).shape(config.getStringList("dropper-to-dispenser-pattern").toArray(new String[0])).setIngredient('S', Material.STRING).setIngredient('I', Material.STICK).setIngredient('X', Material.DROPPER));
+				RECIPES.add(new ShapelessRecipe(new ItemStack(Material.STRING, 4)).addIngredient(Material.WOOL, i));
+		if(getSetting("dropper-to-dispenser"))
+			RECIPES.add(new ShapelessRecipe(new ItemStack(Material.DISPENSER, 1)).addIngredient(Material.DROPPER).addIngredient(Material.BOW));
+		if(getSetting("dropper-to-dispenser-shaped"))
+			RECIPES.add(new ShapedRecipe(new ItemStack(Material.DISPENSER)).shape(getConfig().getStringList("dropper-to-dispenser-pattern").toArray(new String[0])).setIngredient('S', Material.STRING).setIngredient('I', Material.STICK).setIngredient('X', Material.DROPPER));
 
 		// UncraftableNowCraftable
-		if(config.getBoolean("horse-armor"))
+		if(getSetting("horse-armor"))
 		{
 			final Material[] materials = new Material[] {Material.DIAMOND, Material.GOLD_INGOT, Material.IRON_INGOT};
 
 			for(Material mat : materials)
-				recipes.add(new ShapedRecipe(new ItemStack(Material.DIAMOND_BARDING)).shape(config.getStringList("horse-armor-pattern").toArray(new String[0])).setIngredient('O', mat).setIngredient('X', Material.SADDLE));
+				RECIPES.add(new ShapedRecipe(new ItemStack(Material.DIAMOND_BARDING)).shape(getConfig().getStringList("horse-armor-pattern").toArray(new String[0])).setIngredient('O', mat).setIngredient('X', Material.SADDLE));
 		}
-		if(config.getBoolean("saddle"))
-			recipes.add(new ShapedRecipe(new ItemStack(Material.SADDLE)).shape(config.getStringList("saddle-pattern").toArray(new String[0])).setIngredient('O', Material.LEATHER));
-		if(config.getBoolean("nametag"))
-			recipes.add(new ShapedRecipe(new ItemStack(Material.NAME_TAG)).shape(config.getStringList("nametag-pattern").toArray(new String[0])).setIngredient('P', Material.PAPER).setIngredient('S', Material.STRING));
+		if(getSetting("saddle"))
+			RECIPES.add(new ShapedRecipe(new ItemStack(Material.SADDLE)).shape(getConfig().getStringList("saddle-pattern").toArray(new String[0])).setIngredient('O', Material.LEATHER));
+		if(getSetting("nametag"))
+			RECIPES.add(new ShapedRecipe(new ItemStack(Material.NAME_TAG)).shape(getConfig().getStringList("nametag-pattern").toArray(new String[0])).setIngredient('P', Material.PAPER).setIngredient('S', Material.STRING));
 
-		recipes.forEach(Bukkit::addRecipe);
+		RECIPES.forEach(Bukkit::addRecipe);
+	}
+
+	public static QoLPlugin getInstance()
+	{
+		return MAIN;
+	}
+
+	public static FileConfiguration getFileConfig()
+	{
+		return MAIN.getConfig();
+	}
+
+	public static boolean getSetting(String path)
+	{
+		return getFileConfig().getBoolean(path);
 	}
 
 }

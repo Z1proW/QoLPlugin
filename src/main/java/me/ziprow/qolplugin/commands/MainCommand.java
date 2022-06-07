@@ -78,10 +78,10 @@ public class MainCommand implements CommandExecutor
 	{
 		sender.sendMessage(QoLPlugin.PREFIX + "Settings");
 		sender.sendMessage(ChatColor.DARK_PURPLE + "------------------------------");
-		for(String key : QoLPlugin.config.getKeys(false))
-			if(QoLPlugin.config.get(key) instanceof Boolean)
+		for(String key : QoLPlugin.getFileConfig().getKeys(false))
+			if(QoLPlugin.getFileConfig().get(key) instanceof Boolean)
 			{
-				TextComponent setting = new TextComponent((QoLPlugin.config.getBoolean(key) ? ChatColor.GREEN + "[+] " : ChatColor.RED + "[-] ") + ChatColor.GRAY + key);
+				TextComponent setting = new TextComponent((QoLPlugin.getSetting(key) ? ChatColor.GREEN + "[+] " : ChatColor.RED + "[-] ") + ChatColor.GRAY + key);
 				setting.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder("Toggle " + key).create()));
 				setting.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/qol toggle " + key));
 				if(sender instanceof Player)
@@ -93,10 +93,10 @@ public class MainCommand implements CommandExecutor
 
 	private void toggleSetting(CommandSender sender, String key)
 	{
-		if(QoLPlugin.config.get(key) instanceof Boolean)
+		if(QoLPlugin.getFileConfig().get(key) instanceof Boolean)
 		{
-			QoLPlugin.config.set(key, !QoLPlugin.config.getBoolean(key));
-			QoLPlugin.main.saveConfig();
+			QoLPlugin.getFileConfig().set(key, !QoLPlugin.getSetting(key));
+			QoLPlugin.getInstance().saveConfig();
 			QoLPlugin.reload();
 			sendSettings(sender);
 		}

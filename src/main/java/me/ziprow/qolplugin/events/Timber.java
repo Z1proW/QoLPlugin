@@ -40,7 +40,7 @@ public class Timber implements Listener
 		{
 			b.breakNaturally();
 			
-			Bukkit.getScheduler().runTaskLater(QoLPlugin.main, () ->
+			Bukkit.getScheduler().runTaskLater(QoLPlugin.getInstance(), () ->
 			{
 				for(int x = -1; x <= 1; x++)
 					for(int y = -1; y <= 1; y++)
