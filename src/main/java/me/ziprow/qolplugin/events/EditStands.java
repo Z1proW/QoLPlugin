@@ -1,7 +1,6 @@
 package me.ziprow.qolplugin.events;
 
 import me.ziprow.qolplugin.QoLPlugin;
-import org.bukkit.craftbukkit.v1_8_R3.entity.CraftArmorStand;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Entity;
 import org.bukkit.event.EventHandler;
@@ -9,13 +8,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractAtEntityEvent;
 import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.util.EulerAngle;
-import org.bukkit.util.Vector;
-
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
-
-import static java.lang.Math.PI;
 
 public class EditStands implements Listener
 {
@@ -25,7 +17,7 @@ public class EditStands implements Listener
 	{
 		Entity b = e.getRightClicked();
 		
-		if(!(b instanceof CraftArmorStand) || !e.getPlayer().isSneaking()) return;
+		if(!(b instanceof ArmorStand) || !e.getPlayer().isSneaking()) return;
 
 		ArmorStand stand = (ArmorStand)b;
 

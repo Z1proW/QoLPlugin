@@ -25,13 +25,13 @@ public class EditSigns implements Listener
 
 		Location loc = e.getClickedBlock().getLocation();
 		BlockPosition blockPosition = new BlockPosition(loc.getX(), loc.getY(), loc.getZ());
-
 		TileEntitySign tile = (TileEntitySign)((CraftWorld)loc.getWorld()).getTileEntityAt(loc.getBlockX(), loc.getBlockY(), loc.getBlockZ());
+		EntityPlayer entityPlayer = ((CraftPlayer)e.getPlayer()).getHandle();
+
 		tile.a(((CraftPlayer)e.getPlayer()).getHandle()); // set player to edit sign
 		tile.isEditable = true; // set editable
 
-		EntityPlayer entityPlayer = ((CraftPlayer)e.getPlayer()).getHandle();
-		entityPlayer.playerConnection.sendPacket(new PacketPlayOutOpenSignEditor(blockPosition)); // send packet to open sign editor
+		entityPlayer.playerConnection.sendPacket(new PacketPlayOutOpenSignEditor(blockPosition)); // send packet to open sign editor*/
 	}
 
 }
