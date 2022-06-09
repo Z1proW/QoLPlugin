@@ -17,6 +17,9 @@ grow-vines: true
 # Edit Signs with Right Click
 edit-signs: true
 
+# Quickly Change Armor Stand Pose
+edit-stands: true
+
 # Change shaped crafting recipe to shapeless
 shapeless-bread: true
 shapeless-books: true

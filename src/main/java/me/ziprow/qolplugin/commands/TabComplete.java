@@ -49,8 +49,8 @@ public class TabComplete implements TabCompleter
 
 			if(Objects.equals(args[0], "toggle"))
 			{
-				for(String key : QoLPlugin.config.getKeys(false))
-					if(QoLPlugin.config.get(key) instanceof Boolean)
+				for(String key : QoLPlugin.getFileConfig().getKeys(false))
+					if(QoLPlugin.getFileConfig().get(key) instanceof Boolean)
 						arguments.add(key);
 			}
 		}

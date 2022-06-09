@@ -9,6 +9,7 @@ My Quality of Life Spigot Minecraft Plugin
   (all changes can be disabled in the config.yml file)
 * Grow vines with bone meal or vines
 * edit signs with right click
+* edit armorstand pose with sneak + right click (such as on Legacy console)
 ---
 * bread and book crafts are now shapeless (no need for a crafting table anymore)
 * Custom furnace recipes
@@ -29,7 +30,3 @@ My Quality of Life Spigot Minecraft Plugin
     <img src="readme_imgs/nametag.png" width="200" title="nametag">
 
 ------
-
-### TODO
-
-* edit armorstand pose with sneak + right click

@@ -92,6 +92,9 @@ public final class QoLPlugin extends JavaPlugin
 		if(getSetting("edit-signs"))
 			LISTENERS.add(new EditSigns());
 
+		if(getSetting("edit-stands"))
+			LISTENERS.add(new EditStands());
+
 		LISTENERS.forEach(this::regEvent);
 	}
 
