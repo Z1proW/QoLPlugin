@@ -13,7 +13,7 @@ public class SwapArmor implements Listener
 	@EventHandler
 	public void onRightClick(PlayerInteractEvent e)
 	{
-		if(e.getAction() != Action.LEFT_CLICK_BLOCK && e.getAction() != Action.LEFT_CLICK_AIR) return;
+		if(e.getAction() != Action.RIGHT_CLICK_BLOCK && e.getAction() != Action.RIGHT_CLICK_AIR) return;
 
 		Player p = e.getPlayer();
 		ItemStack i = p.getItemInHand();
