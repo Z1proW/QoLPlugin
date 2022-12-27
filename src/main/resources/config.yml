@@ -20,6 +20,9 @@ edit-signs: true
 # Quickly Change Armor Stand Pose
 edit-stands: true
 
+# Swap armor by right clicking in the hotbar
+swap-armor: true
+
 # Change shaped crafting recipe to shapeless
 shapeless-bread: true
 shapeless-books: true

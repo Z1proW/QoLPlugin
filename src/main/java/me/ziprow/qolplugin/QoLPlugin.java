@@ -95,6 +95,9 @@ public final class QoLPlugin extends JavaPlugin
 		if(getSetting("edit-stands"))
 			LISTENERS.add(new EditStands());
 
+		if(getSetting("swap-armor"))
+			LISTENERS.add(new SwapArmor());
+
 		LISTENERS.forEach(this::regEvent);
 	}
 
